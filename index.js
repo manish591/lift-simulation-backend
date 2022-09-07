@@ -79,6 +79,8 @@ ws.on('request', (request) => {
   connection.send(JSON.stringify(payload));
 });
 
-httpServer.listen(8080, () => {
+const PORT = process.env.PORT || 3001;
+
+httpServer.listen(PORT, () => {
   console.log('Server is listening on port 8080');
 });
