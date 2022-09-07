@@ -77,10 +77,18 @@ ws.on('request', (request) => {
   };
 
   connection.send(JSON.stringify(payload));
+
+  for (let key in clients) {
+    clients[key].connection.send(
+      JSON.stringify({
+        action: 'newuseradded',
+      }),
+    );
+  }
 });
 
 const PORT = process.env.PORT || 3001;
 
 httpServer.listen(PORT, () => {
-  console.log('Server is listening on port 8080');
+  console.log(`Server is listening on port ${PORT}`);
 });
